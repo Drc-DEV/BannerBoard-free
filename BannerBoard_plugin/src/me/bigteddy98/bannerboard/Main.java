@@ -12,7 +12,6 @@ import me.bigteddy98.bannerboard.util.VersionUtil;
 import me.bigteddy98.bannerboard.util.colors.ColorManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -351,7 +350,6 @@ public class Main extends JavaPlugin {
 				ChatColor.GOLD + ">> " + message.replace("&D", ChatColor.GRAY + "").replace("&Y", ChatColor.GOLD + ""));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(final CommandSender sender, Command command, String label, String[] args) {
 
@@ -421,17 +419,7 @@ public class Main extends JavaPlugin {
 
 				if (this.deleteSet.contains(uuid)) {
 					deleteSet.remove(uuid);
-
-					Block target;
-
-					String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",")
-							.split(",")[3];
-					if (version.equals("v1_8_R1")) {
-						target = p.getTargetBlock((HashSet<Byte>) null, 10);
-					} else {
-						target = p.getTargetBlock((Set<Material>) null, 10);
-					}
-
+					Block target = p.getTargetBlock(null, 10);
 					for (BannerBoard board : this.memoryManager.getLoadedBannerBoards()) {
 						List<ItemFrame> frameList = board.buildItemFrameList();
 						for (ItemFrame frame : frameList) {
