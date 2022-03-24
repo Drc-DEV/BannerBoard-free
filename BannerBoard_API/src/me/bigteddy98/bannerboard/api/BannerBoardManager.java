@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -19,13 +19,13 @@ package me.bigteddy98.bannerboard.api;
 
 public class BannerBoardManager {
 
-	private static BannerBoardAPI api;
+    private static BannerBoardAPI api;
 
-	public static BannerBoardAPI getAPI() {
-		return api;
-	}
+    public static BannerBoardAPI getAPI() {
+        return api;
+    }
 
-	public static void setAPI(BannerBoardAPI api) {
-		BannerBoardManager.api = api;
-	}
+    public static void setAPI(BannerBoardAPI api) {
+        BannerBoardManager.api = api;
+    }
 }

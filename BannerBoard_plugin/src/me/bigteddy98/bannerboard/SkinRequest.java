@@ -5,15 +5,15 @@ import java.io.IOException;
 
 public abstract class SkinRequest {
 
-	private final String link;
+    private final String link;
 
-	public SkinRequest(String link) {
-		this.link = link;
-	}
+    public SkinRequest(String link) {
+        this.link = link;
+    }
 
-	public String getLink() {
-		return link;
-	}
+    public String getLink() {
+        return link;
+    }
 
-	public abstract BufferedImage pull(BufferedImage image) throws IOException;
+    public abstract BufferedImage pull(BufferedImage image) throws IOException;
 }

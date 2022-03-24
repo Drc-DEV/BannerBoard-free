@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -17,40 +17,40 @@
  */
 package me.bigteddy98.bannerboard.api;
 
+import org.bukkit.plugin.Plugin;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-import org.bukkit.plugin.Plugin;
-
 public class CustomRenderer {
 
-	private final Plugin plugin;
-	private final boolean doLoadSkinCache;
-	private final Class<? extends BannerBoardRenderer> customRenderer;
+    private final Plugin plugin;
+    private final boolean doLoadSkinCache;
+    private final Class<? extends BannerBoardRenderer> customRenderer;
 
-	public CustomRenderer(Plugin plugin, boolean doLoadSkinCache, Class<? extends BannerBoardRenderer> customRenderer) {
-		this.plugin = plugin;
-		this.doLoadSkinCache = doLoadSkinCache;
-		this.customRenderer = customRenderer;
-	}
+    public CustomRenderer(Plugin plugin, boolean doLoadSkinCache, Class<? extends BannerBoardRenderer> customRenderer) {
+        this.plugin = plugin;
+        this.doLoadSkinCache = doLoadSkinCache;
+        this.customRenderer = customRenderer;
+    }
 
-	public Plugin getPlugin() {
-		return plugin;
-	}
+    public Plugin getPlugin() {
+        return plugin;
+    }
 
-	public boolean isDoLoadSkinCache() {
-		return doLoadSkinCache;
-	}
+    public boolean isDoLoadSkinCache() {
+        return doLoadSkinCache;
+    }
 
-	public Class<? extends BannerBoardRenderer> getCustomRenderer() {
-		return customRenderer;
-	}
+    public Class<? extends BannerBoardRenderer> getCustomRenderer() {
+        return customRenderer;
+    }
 
-	public BannerBoardRenderer create(List<Setting> parameters, int allowedWidth, int allowedHeight) throws IncorrectBannerBoardConstructorException, DisableBannerBoardException {
-		try {
-			return this.customRenderer.getConstructor(List.class, Integer.TYPE, Integer.TYPE).newInstance(parameters, allowedWidth, allowedHeight);
-		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-			throw new IncorrectBannerBoardConstructorException(e);
-		}
-	}
+    public BannerBoardRenderer create(List<Setting> parameters, int allowedWidth, int allowedHeight) throws IncorrectBannerBoardConstructorException, DisableBannerBoardException {
+        try {
+            return this.customRenderer.getConstructor(List.class, Integer.TYPE, Integer.TYPE).newInstance(parameters, allowedWidth, allowedHeight);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
+            throw new IncorrectBannerBoardConstructorException(e);
+        }
+    }
 }

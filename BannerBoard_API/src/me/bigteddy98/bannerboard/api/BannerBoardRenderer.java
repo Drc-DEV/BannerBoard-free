@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -17,84 +17,83 @@
  */
 package me.bigteddy98.bannerboard.api;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
+import org.bukkit.entity.Player;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.List;
 
-import org.bukkit.entity.Player;
-
 public abstract class BannerBoardRenderer<T> {
 
-	private static int counter = 0;
+    private static int counter = 0;
 
-	private final int id = counter++;
-	private final List<Setting> settings;
-	private final int allowedWidth;
-	private final int allowedHeight;
+    private final int id = counter++;
+    private final List<Setting> settings;
+    private final int allowedWidth;
+    private final int allowedHeight;
 
-	public BannerBoardRenderer(List<Setting> parameters, int allowedWidth, int allowedHeight) {
-		this.settings = parameters;
-		this.allowedWidth = allowedWidth;
-		this.allowedHeight = allowedHeight;
-	}
+    public BannerBoardRenderer(List<Setting> parameters, int allowedWidth, int allowedHeight) {
+        this.settings = parameters;
+        this.allowedWidth = allowedWidth;
+        this.allowedHeight = allowedHeight;
+    }
 
-	public void render(Player p, BufferedImage image, Graphics2D g, T preparation) {
+    public void render(Player p, BufferedImage image, Graphics2D g, T preparation) {
 
-	}
+    }
 
-	public void render(Player p, BufferedImage image, Graphics2D g) {
+    public void render(Player p, BufferedImage image, Graphics2D g) {
 
-	}
+    }
 
-	public T asyncRenderPrepare(Player p) throws Exception {
-		// doesn't do anything by default, can be used to be overwritten
-		return null;
-	}
+    public T asyncRenderPrepare(Player p) throws Exception {
+        // doesn't do anything by default, can be used to be overwritten
+        return null;
+    }
 
-	public int getAllowedWidth() {
-		return allowedWidth;
-	}
+    public int getAllowedWidth() {
+        return allowedWidth;
+    }
 
-	public int getAllowedHeight() {
-		return allowedHeight;
-	}
+    public int getAllowedHeight() {
+        return allowedHeight;
+    }
 
-	public List<Setting> getSettings() {
-		return settings;
-	}
+    public List<Setting> getSettings() {
+        return settings;
+    }
 
-	public Setting getSetting(String name) {
-		for (Setting s : this.settings) {
-			if (s.getName().equalsIgnoreCase(name)) {
-				return s;
-			}
-		}
-		return null;
-	}
+    public Setting getSetting(String name) {
+        for (Setting s : this.settings) {
+            if (s.getName().equalsIgnoreCase(name)) {
+                return s;
+            }
+        }
+        return null;
+    }
 
-	public boolean hasSetting(String name) {
-		for (Setting s : this.getSettings()) {
-			if (s.getName().equalsIgnoreCase(name)) {
-				return true;
-			}
-		}
-		return false;
-	}
+    public boolean hasSetting(String name) {
+        for (Setting s : this.getSettings()) {
+            if (s.getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-	public Color decodeColor(String color) {
-		String[] split = color.replace(" ", "").split(",");
-		int red = Integer.parseInt(split[0]);
-		int green = Integer.parseInt(split[1]);
-		int blue = Integer.parseInt(split[2]);
-		int alpha = 255;
-		if (split.length > 3) {
-			alpha = Integer.parseInt(split[3]);
-		}
-		return new Color(red, green, blue, alpha);
-	}
+    public Color decodeColor(String color) {
+        String[] split = color.replace(" ", "").split(",");
+        int red = Integer.parseInt(split[0]);
+        int green = Integer.parseInt(split[1]);
+        int blue = Integer.parseInt(split[2]);
+        int alpha = 255;
+        if (split.length > 3) {
+            alpha = Integer.parseInt(split[3]);
+        }
+        return new Color(red, green, blue, alpha);
+    }
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 }

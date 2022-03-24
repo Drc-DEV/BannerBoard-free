@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -19,25 +19,25 @@ package me.bigteddy98.bannerboard.api;
 
 public class DisableBannerBoardException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public DisableBannerBoardException() {
-		super();
-	}
+    public DisableBannerBoardException() {
+        super();
+    }
 
-	protected DisableBannerBoardException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-	}
+    protected DisableBannerBoardException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
 
-	public DisableBannerBoardException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public DisableBannerBoardException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public DisableBannerBoardException(String message) {
-		super(message);
-	}
+    public DisableBannerBoardException(String message) {
+        super(message);
+    }
 
-	public DisableBannerBoardException(Throwable cause) {
-		super(cause);
-	}
+    public DisableBannerBoardException(Throwable cause) {
+        super(cause);
+    }
 }

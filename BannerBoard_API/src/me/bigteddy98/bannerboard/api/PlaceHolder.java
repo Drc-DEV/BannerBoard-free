@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -22,15 +22,15 @@ import org.bukkit.plugin.Plugin;
 
 public abstract class PlaceHolder {
 
-	private final Plugin plugin;
+    private final Plugin plugin;
 
-	public PlaceHolder(Plugin plugin) {
-		this.plugin = plugin;
-	}
+    public PlaceHolder(Plugin plugin) {
+        this.plugin = plugin;
+    }
 
-	public Plugin getPlugin() {
-		return this.plugin;
-	}
+    public Plugin getPlugin() {
+        return this.plugin;
+    }
 
-	public abstract String onReplace(Player viewer);
+    public abstract String onReplace(Player viewer);
 }

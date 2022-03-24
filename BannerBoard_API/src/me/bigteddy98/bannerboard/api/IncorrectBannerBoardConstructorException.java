@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -18,22 +18,22 @@
 package me.bigteddy98.bannerboard.api;
 
 public class IncorrectBannerBoardConstructorException extends Exception {
-	
-	private static final long serialVersionUID = 1L;
 
-	public IncorrectBannerBoardConstructorException() {
-		super();
-	}
+    private static final long serialVersionUID = 1L;
 
-	public IncorrectBannerBoardConstructorException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public IncorrectBannerBoardConstructorException() {
+        super();
+    }
 
-	public IncorrectBannerBoardConstructorException(String message) {
-		super(message);
-	}
+    public IncorrectBannerBoardConstructorException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public IncorrectBannerBoardConstructorException(Throwable cause) {
-		super(cause);
-	}
+    public IncorrectBannerBoardConstructorException(String message) {
+        super(message);
+    }
+
+    public IncorrectBannerBoardConstructorException(Throwable cause) {
+        super(cause);
+    }
 }

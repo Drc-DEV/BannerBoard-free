@@ -1,4 +1,4 @@
-/* 
+/*
  * BannerBoard
  * Copyright (C) 2016 Sander Gielisse
  *
@@ -19,24 +19,24 @@ package me.bigteddy98.bannerboard.api;
 
 public enum SkinType {
 
-	HEAD_3D("3DHEAD"), HEAD_ONLY("HEAD"), ENTIRE_SKIN("SKIN");
+    HEAD_3D("3DHEAD"), HEAD_ONLY("HEAD"), ENTIRE_SKIN("SKIN");
 
-	private final String name;
+    private final String name;
 
-	private SkinType(String name) {
-		this.name = name;
-	}
+    private SkinType(String name) {
+        this.name = name;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public static SkinType fromName(String type) {
-		for (SkinType t : values()) {
-			if (t.getName().equals(type)) {
-				return t;
-			}
-		}
-		return null;
-	}
+    public static SkinType fromName(String type) {
+        for (SkinType t : values()) {
+            if (t.getName().equals(type)) {
+                return t;
+            }
+        }
+        return null;
+    }
 }
