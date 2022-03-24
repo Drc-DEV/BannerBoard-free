@@ -18,38 +18,35 @@ public class SkinCache {
 	private Map<SkinType, SkinRequest> typeLinks;
 
 	public SkinCache(String server) {
-		Map<SkinType, SkinRequest> links = new HashMap<>();
-		links.put(SkinType.fromName("HEAD"), new SkinRequest(server + "fullskin-%NAME%-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1") {
 
-			@Override
-			public BufferedImage pull(BufferedImage image) throws IOException {
-				// cut it%%
-				image = image.getSubimage(250, 312, 139, 139); // asp ratio 1:1
-				return resize(image, 128, 128);
-			}
-		});
+		typeLinks = Map.of(SkinType.fromName("HEAD"), new SkinRequest(server + "fullskin-%NAME%-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1") {
 
-		links.put(SkinType.fromName("3DHEAD"), new SkinRequest(server + "fullskin-%NAME%-640-344-39-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1") {
+					@Override
+					public BufferedImage pull(BufferedImage image) {
+						// cut it%%
+						image = image.getSubimage(250, 312, 139, 139); // asp ratio 1:1
+						return resize(image, 128, 128);
+					}
+				}, SkinType.fromName("3DHEAD"), new SkinRequest(server + "fullskin-%NAME%-640-344-39-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-1") {
 
-			@Override
-			public BufferedImage pull(BufferedImage image) throws IOException {
-				// cut it
-				image = image.getSubimage(222, 282, 202, 202); // asp ratio 1:1
-				// resize to 128x128
-				return resize(image, 128, 128);
-			}
-		});
+					@Override
+					public BufferedImage pull(BufferedImage image) {
+						// cut it
+						image = image.getSubimage(222, 282, 202, 202); // asp ratio 1:1
+						// resize to 128x128
+						return resize(image, 128, 128);
+					}
+				},
 
-		// "+server+"fullskin-sander2798-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
-		links.put(SkinType.fromName("SKIN"), new SkinRequest(server + "fullskin-%NAME%-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0") {
+				// "+server+"fullskin-sander2798-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0
+				SkinType.fromName("SKIN"), new SkinRequest(server + "fullskin-%NAME%-640-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0-0") {
 
-			@Override
-			public BufferedImage pull(BufferedImage image) throws IOException {
-				// cut it
-				return image.getSubimage(150, 95, 305, 490);
-			}
-		});
-		typeLinks = Collections.unmodifiableMap(links);
+					@Override
+					public BufferedImage pull(BufferedImage image) {
+						// cut it
+						return image.getSubimage(150, 95, 305, 490);
+					}
+				});
 	}
 
 	private static BufferedImage resize(BufferedImage img, int w, int h) {

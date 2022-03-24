@@ -8,7 +8,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import javax.imageio.ImageIO;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -107,14 +105,10 @@ public class Main extends JavaPlugin {
 	}
 
 	public void uninject(final Channel c) {
-		c.eventLoop().execute(new Runnable() {
-
-			@Override
-			public void run() {
-				final ChannelPipeline p = c.pipeline();
-				if (p.get("BannerBoard_hook") != null) {
-					p.remove("BannerBoard_hook");
-				}
+		c.eventLoop().execute(() -> {
+			final ChannelPipeline p = c.pipeline();
+			if (p.get("BannerBoard_hook") != null) {
+				p.remove("BannerBoard_hook");
 			}
 		});
 	}
@@ -317,17 +311,13 @@ public class Main extends JavaPlugin {
 		this.skinCache = new SkinCache(this.getConfig().getString("skinserver"));
 
 		// load all boards AFTER all plugins have enabled
-		this.getServer().getScheduler().scheduleSyncDelayedTask(this, new Runnable() {
+		this.getServer().getScheduler().scheduleSyncDelayedTask(this, () -> {
+			Main.this.configurationManager.loadAll();
 
-			@Override
-			public void run() {
-				Main.this.configurationManager.loadAll();
-
-				// find all playerjoinevents
-				// currently only BoardMemory.onJoin
-				for (Player p : getServer().getOnlinePlayers()) {
-					memoryManager.onJoin(new PlayerJoinEvent(p, "BannerBoard reload"));
-				}
+			// find all playerjoinevents
+			// currently only BoardMemory.onJoin
+			for (Player p : getServer().getOnlinePlayers()) {
+				memoryManager.onJoin(new PlayerJoinEvent(p, "BannerBoard reload"));
 			}
 		});
 
@@ -429,15 +419,7 @@ public class Main extends JavaPlugin {
 				if (this.deleteSet.contains(uuid)) {
 					deleteSet.remove(uuid);
 
-					Block target;
-
-					String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",")
-							.split(",")[3];
-					if (version.equals("v1_8_R1")) {
-						target = p.getTargetBlock((HashSet<Byte>) null, 10);
-					} else {
-						target = p.getTargetBlock((Set<Material>) null, 10);
-					}
+					Block target = p.getTargetBlock(null, 10);
 
 					for (BannerBoard board : this.memoryManager.getLoadedBannerBoards()) {
 						List<ItemFrame> frameList = board.buildItemFrameList();
@@ -541,7 +523,7 @@ public class Main extends JavaPlugin {
 		}
 	}
 
-	private static InputStream openStream(String link) throws MalformedURLException, IOException {
+	private static InputStream openStream(String link) throws IOException {
 		final URLConnection url = new URL(link).openConnection();
 		url.setConnectTimeout(2000);
 		url.setReadTimeout(5000);

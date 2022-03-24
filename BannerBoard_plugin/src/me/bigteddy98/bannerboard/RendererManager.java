@@ -49,7 +49,7 @@ public class RendererManager {
 
 	public Map<String, CustomRenderer> getReadOnlyCopy() {
 		synchronized (this.registeredRenderers) {
-			return new CaseInsensitiveMap<CustomRenderer>(this.registeredRenderers);
+			return new CaseInsensitiveMap<>(this.registeredRenderers);
 		}
 	}
 }

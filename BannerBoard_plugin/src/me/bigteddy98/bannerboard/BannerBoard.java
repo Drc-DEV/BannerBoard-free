@@ -112,7 +112,7 @@ public class BannerBoard {
 	public void addTopRenderer(int slide, BannerBoardRenderer<?> renderer) {
 		synchronized (this.internalRenderers) {
 			if (this.internalRenderers.size() <= slide) {
-				this.internalRenderers.add(new ArrayList<BannerBoardRenderer<?>>());
+				this.internalRenderers.add(new ArrayList<>());
 			}
 			this.internalRenderers.get(slide).add(renderer);
 		}
@@ -238,7 +238,7 @@ public class BannerBoard {
 		// make sure we have enough IDs
 		for (int slide = 0; slide < slides; slide++) {
 			if (slide >= this.frameIds.size()) {
-				this.frameIds.add(new ArrayList<Short>());
+				this.frameIds.add(new ArrayList<>());
 			}
 			List<ItemFrame> frameList = this.buildItemFrameList();
 			for (int frame = 0; frame < frameList.size(); frame++) {

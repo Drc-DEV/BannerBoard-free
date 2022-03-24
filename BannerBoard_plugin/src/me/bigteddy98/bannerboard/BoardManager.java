@@ -1,13 +1,7 @@
 package me.bigteddy98.bannerboard;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -132,12 +126,12 @@ public class BoardManager implements Listener {
 
 					final List<BlockFace> faces = new ArrayList<>();
 					if (loc1.getBlockX() == loc2.getBlockX() && loc1.getBlockZ() == loc2.getBlockZ()) {
-						faces.addAll(Arrays.asList(new BlockFace[] { BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST }));
+						faces.addAll(Arrays.asList(BlockFace.NORTH, BlockFace.EAST, BlockFace.SOUTH, BlockFace.WEST));
 					} else {
 						if (northSouth) {
-							faces.addAll(Arrays.asList(new BlockFace[] { BlockFace.NORTH, BlockFace.SOUTH }));
+							faces.addAll(Arrays.asList(BlockFace.NORTH, BlockFace.SOUTH));
 						} else { // else eastWest
-							faces.addAll(Arrays.asList(new BlockFace[] { BlockFace.EAST, BlockFace.WEST }));
+							faces.addAll(Arrays.asList(BlockFace.EAST, BlockFace.WEST));
 						}
 					}
 
@@ -248,7 +242,7 @@ public class BoardManager implements Listener {
 	}
 
 	private List<Location> getSelection(Location loc1, Location loc2) {
-		if (!loc1.getWorld().equals(loc2.getWorld())) {
+		if (!Objects.equals(loc1.getWorld(), loc2.getWorld())) {
 			throw new UnsupportedOperationException("Cannot measure distance between " + loc1.getWorld().getName() + " and " + loc2.getWorld().getName());
 		}
 		World w = loc1.getWorld();

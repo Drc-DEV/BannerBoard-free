@@ -1,6 +1,5 @@
 package me.bigteddy98.bannerboard;
 
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -85,7 +84,7 @@ public class Mapping {
 		return worldMaps.get(getHandle.invoke(Bukkit.getServer().getWorlds().get(0)));
 	}
 
-	public static Object claimId(short id) throws IOException {
+	public static Object claimId(short id) {
 		String name = "map_" + id;
 		try {
 			final Object worldMap = worldMapConstructor.newInstance(name);
